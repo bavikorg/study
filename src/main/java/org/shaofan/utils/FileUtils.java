@@ -19,30 +19,30 @@ import java.util.Set;
  */
 public class FileUtils {
 
-    public static String getExtension(String fileName) {
+    public static /*~~>*/String getExtension(/*~~>*/String fileName) {
         if (StringUtils.INDEX_NOT_FOUND == StringUtils.indexOf(fileName, "."))
-            return StringUtils.EMPTY;
-        String ext = StringUtils.substring(fileName,
+            return /*~~>*/StringUtils.EMPTY;
+        /*~~>*/String ext = StringUtils.substring(fileName,
                 StringUtils.lastIndexOf(fileName, "."));
         return StringUtils.trimToEmpty(ext);
     }
 
-    public static String getFileName(String header) {
-        String[] tempArr1 = header.split(";");
-        String[] tempArr2 = tempArr1[2].split("=");
+    public static /*~~>*/String getFileName(/*~~>*/String header) {
+        /*~~>*/String[] tempArr1 = header.split(";");
+        /*~~>*/String[] tempArr2 = tempArr1[2].split("=");
         //获取文件名，兼容各种浏览器的写法
         return tempArr2[1].substring(tempArr2[1].lastIndexOf("\\") + 1).replaceAll("\"", "");
 
     }
 
-    public static String getPermissions(Path path) throws IOException {
+    public static /*~~>*/String getPermissions(Path path) throws IOException {
         PosixFileAttributeView fileAttributeView = Files.getFileAttributeView(path, PosixFileAttributeView.class);
         PosixFileAttributes readAttributes = fileAttributeView.readAttributes();
         Set<PosixFilePermission> permissions = readAttributes.permissions();
         return PosixFilePermissions.toString(permissions);
     }
 
-    public static String setPermissions(File file, String permsCode, boolean recursive) throws IOException {
+    public static /*~~>*/String setPermissions(File file, /*~~>*/String permsCode, boolean recursive) throws IOException {
         PosixFileAttributeView fileAttributeView = Files.getFileAttributeView(file.toPath(), PosixFileAttributeView.class);
         fileAttributeView.setPermissions(PosixFilePermissions.fromString(permsCode));
         if (file.isDirectory() && recursive && file.listFiles() != null) {
@@ -81,14 +81,14 @@ public class FileUtils {
         return ret;
     }
 
-    public static void mkFolder(String fileName) {
+    public static void mkFolder(/*~~>*/String fileName) {
         File f = new File(fileName);
         if (!f.exists()) {
             f.mkdir();
         }
     }
 
-    public static File mkFile(String fileName) {
+    public static File mkFile(/*~~>*/String fileName) {
         File f = new File(fileName);
         try {
             f.createNewFile();

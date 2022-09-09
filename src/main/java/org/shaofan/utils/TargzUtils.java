@@ -27,7 +27,7 @@ public class TargzUtils {
     /**
      * 解压.tar文件
      */
-    public static void unTarFile(File srcFile, String destPath)
+    public static void unTarFile(File srcFile, /*~~>*/String destPath)
             throws Exception {
 
         try (TarArchiveInputStream tais = new TarArchiveInputStream(
@@ -44,7 +44,7 @@ public class TargzUtils {
         while ((entry = tais.getNextTarEntry()) != null) {
 
             // 文件
-            String dir = destFile.getPath() + File.separator + entry.getName();
+            /*~~>*/String dir = destFile.getPath() + /*~~>*/File.separator + entry.getName();
             File dirFile = new File(dir);
 
             // 文件检查
@@ -77,7 +77,7 @@ public class TargzUtils {
     /**
      * 解压tar.gz
      */
-    public static void unTargzFile(File gzFile, String descDir) throws Exception {
+    public static void unTargzFile(File gzFile, /*~~>*/String descDir) throws Exception {
 
         GZIPInputStream inputStream = new GZIPInputStream((new FileInputStream(gzFile)));
         TarArchiveInputStream tarArchiveInputStream = new TarArchiveInputStream(inputStream);

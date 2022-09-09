@@ -20,13 +20,13 @@ import java.io.IOException;
  */
 public class RarUtils {
 
-    public static void unRarFile(File srcRar, String dstDirectoryPath) throws IOException, RarException {
+    public static void unRarFile(File srcRar, /*~~>*/String dstDirectoryPath) throws IOException, RarException {
 
         Archive archive = new Archive(srcRar);
         FileHeader fh = archive.nextFileHeader();
         while (fh != null) {
-            String path = fh.getFileNameString().replaceAll("\\\\", "/");
-            File dirFile = new File(dstDirectoryPath + File.separator
+            /*~~>*/String path = fh.getFileNameString().replaceAll("\\\\", "/");
+            File dirFile = new File(dstDirectoryPath + /*~~>*/File.separator
                     + path);
             if (fh.isDirectory()) { // 文件夹
                 dirFile.mkdirs();

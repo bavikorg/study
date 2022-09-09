@@ -18,7 +18,7 @@ import java.util.zip.ZipOutputStream;
  */
 public class ZipUtils {
 
-    public static void zipFiles(ZipOutputStream out, String path, File... srcFiles) {
+    public static void zipFiles(ZipOutputStream out, /*~~>*/String path, File... srcFiles) {
         path = path.replaceAll("\\*", "/");
         if (!path.endsWith("/")) {
             path += "/";
@@ -28,7 +28,7 @@ public class ZipUtils {
             for (File srcFile : srcFiles) {
                 if (srcFile.isDirectory()) {
                     File[] files = srcFile.listFiles();
-                    String srcPath = srcFile.getName();
+                    /*~~>*/String srcPath = srcFile.getName();
                     srcPath = srcPath.replaceAll("\\*", "/");
                     if (!srcPath.endsWith("/")) {
                         srcPath += "/";
@@ -51,7 +51,7 @@ public class ZipUtils {
         }
     }
 
-    public static void unZipFiles(File zipFile, String descDir) throws IOException {
+    public static void unZipFiles(File zipFile, /*~~>*/String descDir) throws IOException {
         if (!descDir.endsWith("/")) {
             descDir += "/";
         }
@@ -63,9 +63,9 @@ public class ZipUtils {
 
         for (Enumeration entries = zip.entries(); entries.hasMoreElements(); ) {
             ZipEntry entry = (ZipEntry) entries.nextElement();
-            String zipEntryName = entry.getName();
+            /*~~>*/String zipEntryName = entry.getName();
             InputStream in = zip.getInputStream(entry);
-            String outPath = (descDir + zipEntryName).replaceAll("\\*", "/");
+            /*~~>*/String outPath = (descDir + zipEntryName).replaceAll("\\*", "/");
             //判断路径是否存在,不存在则创建文件路径
             File file = new File(outPath.substring(0, outPath.lastIndexOf('/')));
             if (!file.exists()) {
